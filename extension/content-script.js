@@ -13,8 +13,8 @@ if (!globalThis.__pipKanpeHotkeysInstalled) {
 
 function runCommand(command) {
   const buttonId = {
-    previous: "prev-main",
-    next: "next-main",
+    previous: "preview-pip-prev",
+    next: "preview-pip-next",
   }[command];
 
   const button = buttonId ? document.getElementById(buttonId) : null;

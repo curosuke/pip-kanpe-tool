@@ -61,8 +61,6 @@ function bindElements() {
     "deck-meta",
     "clear-all",
     "thumb-list",
-    "prev-main",
-    "next-main",
     "empty-state",
     "preview-stage",
     "preview-image",
@@ -564,12 +562,7 @@ function updatePreview() {
   els.previewImage.classList.toggle("cover", state.settings.fitMode === "cover");
   els.previewStage.classList.toggle("separate", state.settings.pipControlsSeparateFromImage);
   els.previewPipControls.style.display = hasCards ? "grid" : "none";
-  els.previewPipControls.classList.toggle("small", state.settings.pipControlsSize === "small");
-  els.previewPipControls.classList.toggle("medium", state.settings.pipControlsSize === "medium");
-  els.previewPipControls.classList.toggle("large", state.settings.pipControlsSize === "large");
-  els.previewPipControls.classList.toggle("top", state.settings.pipControlsPosition === "top");
-  els.previewPipControls.classList.toggle("bottom", state.settings.pipControlsPosition !== "top");
-  els.previewPipControls.classList.toggle("separate", state.settings.pipControlsSeparateFromImage);
+  applyPipControlClasses(els.previewPipControls, state.settings);
 
   if (hasCards) {
     els.previewImage.src = getObjectUrl(card);
@@ -722,15 +715,18 @@ function updatePip() {
   image.alt = card.name;
   image.classList.toggle("cover", state.settings.fitMode === "cover");
   shell.classList.toggle("separate", state.settings.pipControlsSeparateFromImage);
-  controls.classList.toggle("small", state.settings.pipControlsSize === "small");
-  controls.classList.toggle("medium", state.settings.pipControlsSize === "medium");
-  controls.classList.toggle("large", state.settings.pipControlsSize === "large");
-  controls.classList.toggle("top", state.settings.pipControlsPosition === "top");
-  controls.classList.toggle("bottom", state.settings.pipControlsPosition !== "top");
-  controls.classList.toggle("separate", state.settings.pipControlsSeparateFromImage);
+  applyPipControlClasses(controls, state.settings);
   label.textContent = formatPipLabel(card);
   prev.disabled = state.cards.length <= 1;
   next.disabled = state.cards.length <= 1;
+}
+
+function applyPipControlClasses(element, settings) {
+  element.classList.remove("small", "medium", "large", "top", "bottom", "separate");
+  element.classList.add(settings.pipControlsSize, settings.pipControlsPosition);
+  if (settings.pipControlsSeparateFromImage) {
+    element.classList.add("separate");
+  }
 }
 
 function formatPipLabel(card) {

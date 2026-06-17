@@ -288,7 +288,6 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  place-items: normal;
   gap: 0.5rem;
 }
 
@@ -637,17 +636,6 @@ body.pip-body {
   --pip-control-label-font-size: 0.82rem;
 }
 
-.pip-controls.medium {
-  --pip-control-button-width: 4.25rem;
-  --pip-control-button-height: 3rem;
-  --pip-control-button-font-size: 1.6rem;
-  --pip-control-gap: 0.5rem;
-  --pip-control-padding: 0.5rem;
-  --pip-control-label-padding-y: 0.65rem;
-  --pip-control-label-padding-x: 0.75rem;
-  --pip-control-label-font-size: 0.9rem;
-}
-
 .pip-controls.large {
   --pip-control-button-width: 5rem;
   --pip-control-button-height: 3.5rem;
@@ -661,13 +649,6 @@ body.pip-body {
 
 .preview-pip-controls {
   z-index: 2;
-}
-
-.preview-pip-controls.separate {
-  position: static;
-  inset: auto;
-  width: 100%;
-  margin: 0;
 }
 
 .pip-controls.top {
